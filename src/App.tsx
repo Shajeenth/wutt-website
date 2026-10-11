@@ -2,6 +2,7 @@ import { useEffect, useRef, type WheelEvent } from 'react'
 import wuttLogo from './assets/wutt-logo.png'
 import './App.css'
 import NextSection from './NextSection'
+import DarkerSection from './DarkerSection'
 
 function App() {
   const scrollContainer = useRef<HTMLElement>(null)
@@ -24,7 +25,7 @@ function App() {
     const currentSection = Math.round(container.scrollTop / container.clientHeight)
     const targetSection = Math.max(
       0,
-      Math.min(1, currentSection + Math.sign(event.deltaY)),
+      Math.min(2, currentSection + Math.sign(event.deltaY)),
     )
 
     if (targetSection === currentSection) return
@@ -55,6 +56,7 @@ function App() {
         </svg>
       </section>
       <NextSection />
+      <DarkerSection />
     </main>
   )
 }

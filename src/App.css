@@ -15,7 +15,8 @@
 }
 
 .hero-section,
-.next-section {
+.next-section,
+.darker-section {
   position: relative;
   height: 100vh;
   height: 100dvh;
@@ -52,13 +53,17 @@
   background: linear-gradient(to bottom, var(--deep-water), #1a4669);
 }
 
-.next-section__dots {
+.darker-section {
+  background: linear-gradient(to bottom, #1a4669, #102e47);
+}
+
+.section-dots {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.next-section__dot {
+.section-dot {
   position: absolute;
   border-radius: 50%;
   background-color: #0b2f4f;
@@ -66,8 +71,8 @@
   animation-iteration-count: infinite;
 }
 
-.next-section__dot::before,
-.next-section__dot::after {
+.section-dot::before,
+.section-dot::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -75,20 +80,24 @@
   content: "";
 }
 
-.next-section__dot::before {
+.section-dot::before {
   transform: translateX(-100vw);
 }
 
-.next-section__dot::after {
+.section-dot::after {
   transform: translateX(100vw);
 }
 
-.next-section__dot--left {
+.section-dot--left {
   animation-name: next-section-drift-left;
 }
 
-.next-section__dot--right {
+.section-dot--right {
   animation-name: next-section-drift-right;
+}
+
+.darker-section .section-dot {
+  background-color: #061b2d;
 }
 
 @keyframes next-section-drift-left {
@@ -104,7 +113,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .next-section__dot {
+  .section-dot {
     animation: none;
   }
 }
