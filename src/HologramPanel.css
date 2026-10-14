@@ -1,0 +1,87 @@
+.hologram-panel {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100% - 48px);
+  color: #e9fbff;
+  font-family: 'Play', sans-serif;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.65;
+}
+
+.hologram-panel__surface {
+  box-sizing: border-box;
+  height: 100%;
+  max-height: inherit;
+  border: 3px solid #031321;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 3px,
+      rgb(43 91 151 / 10%) 3px 4px
+    ),
+    #0a2544;
+  box-shadow:
+    inset 0 0 0 2px #24558a,
+    inset 0 0 30px rgb(24 64 114 / 25%),
+    0 0 0 1px rgb(36 85 138 / 65%),
+    0 0 28px rgb(18 56 104 / 35%);
+  transform: scaleY(0.008);
+  transform-origin: center;
+  transition: transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hologram-panel__content {
+  box-sizing: border-box;
+  height: 100%;
+  max-height: inherit;
+  overflow: auto;
+  padding: clamp(24px, 4vw, 48px);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  overflow-wrap: anywhere;
+}
+
+.hologram-panel__content > :first-child {
+  margin-top: 0;
+}
+
+.hologram-panel__content > :last-child {
+  margin-bottom: 0;
+}
+
+.hologram-panel__content h2,
+.hologram-panel__content h3 {
+  margin-bottom: 20px;
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hologram-panel__content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hologram-panel[data-visible='true'] .hologram-panel__surface,
+.hologram-panel:focus-within .hologram-panel__surface {
+  transform: scaleY(1);
+}
+
+.hologram-panel[data-visible='true'] .hologram-panel__content,
+.hologram-panel:focus-within .hologram-panel__content {
+  opacity: 1;
+  transition: opacity 350ms ease 250ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-panel .hologram-panel__surface {
+    transform: none;
+    transition: none;
+  }
+
+  .hologram-panel .hologram-panel__content {
+    opacity: 1;
+    transition: none;
+  }
+}

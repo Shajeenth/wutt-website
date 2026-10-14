@@ -3,6 +3,9 @@ import wuttLogo from './assets/wutt-logo.png'
 import './App.css'
 import NextSection from './NextSection'
 import DarkerSection from './DarkerSection'
+import SponsorsSection from './SponsorsSection'
+import FinalSection from './FinalSection'
+import Navbar from './Navbar'
 
 function App() {
   const scrollContainer = useRef<HTMLElement>(null)
@@ -25,7 +28,7 @@ function App() {
     const currentSection = Math.round(container.scrollTop / container.clientHeight)
     const targetSection = Math.max(
       0,
-      Math.min(2, currentSection + Math.sign(event.deltaY)),
+      Math.min(container.children.length - 1, currentSection + Math.sign(event.deltaY)),
     )
 
     if (targetSection === currentSection) return
@@ -41,12 +44,14 @@ function App() {
   }
 
   return (
+    <>
+    <Navbar />
     <main
       className="page-scroll"
       ref={scrollContainer}
       onWheel={handleWheel}
     >
-      <section className="app-background hero-section">
+      <section className="app-background hero-section" id="home">
         <div className="wutt-logo">
           <img src={wuttLogo} alt="Wutt" />
         </div>
@@ -57,7 +62,10 @@ function App() {
       </section>
       <NextSection />
       <DarkerSection />
+      <SponsorsSection />
+      <FinalSection />
     </main>
+    </>
   )
 }
 
