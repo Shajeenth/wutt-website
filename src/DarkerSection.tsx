@@ -1,24 +1,16 @@
 import sectionDots from './sectionDots'
-import HologramPanel from './HologramPanel'
 import FloatingTitle from './FloatingTitle'
 
 function DarkerSection() {
   return (
     <section className="darker-section" id="our-team" aria-labelledby="our-team-title">
-      <FloatingTitle id="our-team-title" text="our team" />
-      <HologramPanel
-        position={{ x: '50%', y: '50%' }}
-        width="calc(100% - 2 * clamp(24px, 4vw, 64px))"
-        height="40%"
-      >
-        <h3>our team</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-        </p>
-      </HologramPanel>
+      <div className="about-container">
+        <FloatingTitle id="our-team-title" text="our team" />
+        <div className="about-panels">
+          <div className="about-panel" />
+          <div className="about-panel" />
+        </div>
+      </div>
       <span className="section-dots" aria-hidden="true">
         {sectionDots.map(([left, top, size], index) => (
           <span

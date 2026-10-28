@@ -1,4 +1,3 @@
-import { useEffect, useRef, type WheelEvent } from 'react'
 import wuttLogo from './assets/wutt-logo.png'
 import './App.css'
 import NextSection from './NextSection'
@@ -8,49 +7,10 @@ import FinalSection from './FinalSection'
 import Navbar from './Navbar'
 
 function App() {
-  const scrollContainer = useRef<HTMLElement>(null)
-  const isTransitioning = useRef(false)
-  const transitionTimeout = useRef<number | undefined>(undefined)
-
-  useEffect(() => {
-    return () => window.clearTimeout(transitionTimeout.current)
-  }, [])
-
-  function handleWheel(event: WheelEvent<HTMLElement>) {
-    if (event.deltaY === 0) return
-
-    event.preventDefault()
-    if (isTransitioning.current) return
-
-    const container = scrollContainer.current
-    if (!container) return
-
-    const currentSection = Math.round(container.scrollTop / container.clientHeight)
-    const targetSection = Math.max(
-      0,
-      Math.min(container.children.length - 1, currentSection + Math.sign(event.deltaY)),
-    )
-
-    if (targetSection === currentSection) return
-
-    isTransitioning.current = true
-    container.scrollTo({
-      top: targetSection * container.clientHeight,
-      behavior: 'smooth',
-    })
-    transitionTimeout.current = window.setTimeout(() => {
-      isTransitioning.current = false
-    }, 1000)
-  }
-
   return (
     <>
     <Navbar />
-    <main
-      className="page-scroll"
-      ref={scrollContainer}
-      onWheel={handleWheel}
-    >
+    <main className="page-scroll">
       <section className="app-background hero-section" id="home">
         <div className="wutt-logo">
           <img src={wuttLogo} alt="Wutt" />

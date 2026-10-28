@@ -5,7 +5,7 @@ const links = [
   { id: 'about-us', label: 'About Us' },
   { id: 'our-team', label: 'Our Team' },
   { id: 'sponsors', label: 'Sponsors' },
-  { id: 'depths', label: 'Depths' },
+  { id: 'depths', label: 'Socials' },
 ]
 
 function Navbar() {
