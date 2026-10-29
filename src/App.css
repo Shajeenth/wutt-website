@@ -9,8 +9,13 @@ body {
   z-index: 10;
   overflow-x: clip;
   background: transparent;
+  transition: background-color 350ms ease;
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
+}
+
+.navbar--scrolled {
+  background-color: rgb(6 27 45 / 88%);
 }
 
 .navbar__links {
@@ -59,6 +64,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
+  --water-surface: #65a5cc;
   --deep-water: #3478a8;
 
   &::-webkit-scrollbar {
@@ -83,28 +89,83 @@ body {
   place-items: center;
   overflow: hidden;
   background-color: #fff;
-  background-image:
-    linear-gradient(to bottom, rgb(173 216 230 / 80%), transparent 75%),
-    repeating-linear-gradient(
-      to bottom,
-      #add8e6 0 1px,
-      transparent 1px 4px,
-      rgb(173 216 230 / 45%) 4px 5px,
-      transparent 5px 8px,
-      rgb(173 216 230 / 45%) 8px 9px,
-      transparent 9px 12px,
-      rgb(173 216 230 / 45%) 12px 13px,
-      transparent 13px 16px,
-      rgb(173 216 230 / 45%) 16px 17px,
-      transparent 17px 19px,
-      #add8e6 19px 20px
-    );
+  background-image: linear-gradient(to bottom, rgb(173 216 230 / 80%), transparent 75%);
+}
+
+.water-sections {
+  background: linear-gradient(
+    to bottom,
+    var(--deep-water) 0%,
+    #1a4669 28.5714%,
+    #102e47 57.1429%,
+    #06121f 85.7143%,
+    #010409 100%
+  );
 }
 
 .next-section {
   display: grid;
   place-items: center;
-  background: linear-gradient(to bottom, var(--deep-water), #1a4669);
+}
+
+.site-footer {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  box-sizing: border-box;
+  padding: 20px 20%;
+  gap: 35px;
+  height: 50vh;
+  height: 50dvh;
+  background-color: #fff;
+  color: #000;
+}
+
+.site-footer__column {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.site-footer__column--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer__column--address {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.site-footer .site-footer__address {
+  color: inherit;
+  font-size: clamp(12px, min(1.2vw, 1.875vh), 24px);
+  font-style: normal;
+  text-align: left;
+}
+
+.site-footer__linktree {
+  color: inherit;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer__linktree:hover,
+.site-footer__linktree:focus-visible {
+  text-decoration: underline;
+}
+
+.site-footer__logo {
+  display: block;
+  width: auto;
+  height: 25vh;
+  height: 25dvh;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .about-container {
@@ -136,24 +197,36 @@ body {
   min-width: 0;
   padding: 10px;
   box-sizing: border-box;
-  background-color: #0b2f4f;
-}
-
-#about-us .about-panel {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  text-align: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(14px, min(1.6vw, 2.5vh), 32px);
-  line-height: 1.4;
-  color: #fff;
   min-height: 0;
   overflow-y: auto;
   overflow-wrap: anywhere;
 }
 
-#about-us .about-panel p {
-  margin: auto 0;
+.about-panel,
+.site-footer__address {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 350;
+  font-size: clamp(14px, min(1.6vw, 2.5vh), 32px);
+  line-height: 1.4;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.about-panel h3 {
+  flex-shrink: 0;
+  margin: auto 0 12px;
+  font-size: calc(1em + 5px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #65eaff;
+}
+
+.about-panel p {
+  flex-shrink: 0;
+  margin: 0 0 auto;
 }
 
 .about-title {
@@ -204,6 +277,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .navbar {
+    transition: none;
+  }
+
   .navbar a {
     transition: none;
   }
@@ -222,12 +299,82 @@ body {
   }
 }
 
-.darker-section {
-  background: linear-gradient(to bottom, #1a4669, #102e47);
+.sponsors-section {
+  display: grid;
+  align-items: center;
 }
 
-.sponsors-section {
-  background: linear-gradient(to bottom, #102e47, #06121f);
+.sponsors-section .about-container {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  width: 100%;
+  height: 70%;
+  grid-template-columns: 20% minmax(0, 1fr) 20%;
+  grid-template-rows: auto minmax(0, 1fr) 120px;
+  column-gap: 0;
+}
+
+.sponsors-section .about-title,
+.sponsors-section .about-panels {
+  grid-column: 2;
+}
+
+.sponsors-strip {
+  grid-column: 1 / -1;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 12px 0;
+  height: 120px;
+  background-color: rgb(128 128 128 / 15%);
+}
+
+.sponsors-strip__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: sponsors-marquee 40s linear infinite;
+}
+
+.sponsors-strip__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  gap: 80px;
+  min-width: 100vw;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.sponsors-strip__logo {
+  display: block;
+  flex: 0 0 160px;
+  height: 100%;
+  width: 160px;
+  object-fit: contain;
+}
+
+@keyframes sponsors-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsors-strip {
+    overflow-x: auto;
+  }
+
+  .sponsors-strip__track {
+    animation: none;
+  }
+
+  .sponsors-strip__group[aria-hidden='true'],
+  .sponsors-strip__logo:not([data-repeat='0']) {
+    display: none;
+  }
 }
 
 .sponsors-section .about-title {
@@ -239,8 +386,30 @@ body {
 }
 
 .final-section {
+  display: grid;
+  place-items: center;
   overflow: hidden;
-  background: linear-gradient(to bottom, #06121f, #010409);
+}
+
+.linktree-button {
+  padding: 20px;
+  border: 0;
+  border-radius: 9999px;
+  background-color: #ffe23b;
+  color: #000;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.linktree-button:hover {
+  background-color: #fff28a;
+}
+
+.linktree-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
 }
 
 .section-dots {
@@ -553,8 +722,8 @@ body {
   transform-box: fill-box;
   animation: drift 14s linear infinite;
 }
-.wave-back { fill: #65a5cc; opacity: 0.8; animation-duration: 20s; animation-direction: reverse; }
-.wave-front { fill: var(--deep-water); }
+.wave-back { fill: var(--water-surface); opacity: 0.8; animation-duration: 20s; animation-direction: reverse; }
+.wave-front { fill: url(#water-surface-gradient); }
 
 @keyframes drift {
   from { transform: translateX(0); }

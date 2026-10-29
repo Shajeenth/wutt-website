@@ -4,12 +4,12 @@ const links = [
   { id: 'home', label: 'Home' },
   { id: 'about-us', label: 'About Us' },
   { id: 'our-team', label: 'Our Team' },
-  { id: 'sponsors', label: 'Sponsors' },
-  { id: 'depths', label: 'Socials' },
+  { id: 'sponsors', label: 'Sponsors' }
 ]
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
+  const [hasScrolled, setHasScrolled] = useState(false)
   const clickedSection = useRef<string | null>(null)
 
   useEffect(() => {
@@ -33,6 +33,12 @@ function Navbar() {
       if (link) setActiveSection(link.id)
     }
 
+    function handleScroll() {
+      setHasScrolled(container!.scrollTop > 0)
+    }
+
+    handleScroll()
+    container.addEventListener('scroll', handleScroll, { passive: true })
     container.addEventListener('scrollend', handleScrollEnd)
 
     links.forEach(({ id }) => {
@@ -42,12 +48,13 @@ function Navbar() {
 
     return () => {
       observer.disconnect()
+      container.removeEventListener('scroll', handleScroll)
       container.removeEventListener('scrollend', handleScrollEnd)
     }
   }, [])
 
   return (
-    <nav className="navbar" aria-label="Main navigation">
+    <nav className={`navbar${hasScrolled ? ' navbar--scrolled' : ''}`} aria-label="Main navigation">
       <ul className="navbar__links">
         {links.map(({ id, label }) => (
           <li key={id}>

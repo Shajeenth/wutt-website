@@ -8,6 +8,7 @@ function NextSection() {
         <FloatingTitle id="about-us-title" text="about us" />
         <div className="about-panels">
           <div className="about-panel">
+            <h3>Who we are</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -16,6 +17,7 @@ function NextSection() {
             </p> 
           </div>
           <div className="about-panel">
+            <h3>What we do</h3>
             <p>
               Duis aute irure dolor in reprehenderit in voluptate velit esse
               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
