@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from 'react'
 const links = [
   { id: 'home', label: 'Home' },
   { id: 'about-us', label: 'About Us' },
-  { id: 'our-team', label: 'Our Team' },
-  { id: 'sponsors', label: 'Sponsors' }
+  { id: 'our-team', label: 'Our Teams' },
+  { id: 'sponsors', label: 'Sponsors' },
+  { id: 'contact-us', label: 'Contact Us' }
 ]
 
 function Navbar() {
@@ -28,8 +29,11 @@ function Navbar() {
 
     function handleScrollEnd() {
       clickedSection.current = null
-      const index = Math.round(container!.scrollTop / container!.clientHeight)
-      const link = links[index]
+      const midpoint = container!.getBoundingClientRect().top + container!.clientHeight / 2
+      const link = links.findLast(({ id }) => {
+        const section = document.getElementById(id)
+        return section && section.getBoundingClientRect().top <= midpoint
+      })
       if (link) setActiveSection(link.id)
     }
 

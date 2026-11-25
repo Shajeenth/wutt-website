@@ -1,8 +1,9 @@
 import wuttLogo from './assets/wutt-logo.png'
 import './App.css'
 import NextSection from './NextSection'
-import DarkerSection from './DarkerSection'
+import TeamsSection from './TeamsSection'
 import SponsorsSection from './SponsorsSection'
+import ContactSection from './ContactSection'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
@@ -28,8 +29,9 @@ function App() {
       </section>
       <div className="water-sections">
         <NextSection />
-        <DarkerSection />
+        <TeamsSection />
         <SponsorsSection />
+        <ContactSection />
         <Footer />
       </div>
     </main>

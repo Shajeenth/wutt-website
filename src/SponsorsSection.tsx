@@ -1,6 +1,8 @@
 import FloatingTitle from './FloatingTitle'
 import sectionDots from './sectionDots'
 import wuttLogo from './assets/wutt-logo.png'
+import sponsorshipPackage from './assets/sponsorshipPackage.pdf?url'
+import PdfPages from './PdfPages'
 
 const sponsors = [
   { name: 'Wutt', image: wuttLogo },
@@ -21,15 +23,9 @@ function SponsorsSection() {
               aliquip ex ea commodo consequat.
             </p>
           </div>
-          <div className="about-panel">
-            <h3>Partner with us</h3>
-            <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.
-            </p>
-          </div>
+        </div>
+        <div className="about-panel sponsor-package">
+          <PdfPages src={sponsorshipPackage} />
         </div>
         <div className="sponsors-strip">
           <div className="sponsors-strip__track">
